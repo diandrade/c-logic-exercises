@@ -66,27 +66,37 @@ int     ft_intlen(int *tab)
         return i;
 }
 
-void    ft_rev_int_tab(int *tab, int size)
+void    ft_sort_int_tab(int *tab, int size)
 {
         int     i;
-        int     swaps;
+	int	j;
         int     temp;
-
-        i = 0;
-        swaps = size / 2;
-        while(i < swaps){
-                temp = tab[i];
-                tab[i] = tab[size - 1 - i];
-                tab[size - 1 - i] = temp;
-                i++;
-        }
+	
+	i = 0;
+	while(i < size)
+	{
+		j = 0;
+		while(j < size - i - 1)
+		{
+			if(tab[j] > tab[j + 1])
+               		{
+                        	temp = tab[j];
+                        	tab[j] = tab[j + 1];
+                        	tab[j + 1] = temp;
+                	}
+			j++;
+		}
+		i++;
+	}
 }
 
 int     main(void)
 {
-        int     tab[] = {10, 20, 30, 400, 5000, -2147483648};
-        int     terminated[] = {10, 20, 30, 400, 500, -2147483648, 0};
+        int     tab[] = {20, 10, 400, 30, 5000, -2147483648};
+        int     terminated[] = {20, 10, 400, 30, 5000, -2147483648, 0};
 
         ft_putstr(tab, ft_intlen(terminated));
-        ft_rev_int_tab(tab, ft_intlen(terminated));
-
+        ft_sort_int_tab(tab, ft_intlen(terminated));
+	ft_putstr(tab, ft_intlen(terminated));
+	return (0);
+}

@@ -1,22 +1,21 @@
 #include <unistd.h>
 
-int	ft_iterative_factorial(int nb)
+int	ft_recursive_factorial(int nb)
 {
-	int	i;
-	int	j;
-
-	if(!nb)
+	if (!nb || nb < 0)
 	{
 		return (0);
 	}
 
-	i = 0;
-	while(i < nb)
+	else if (nb == 0 || nb == 1)
 	{
-		j += i * nb;
-		i++;	
+		return (1);
 	}
-	return (j);
+
+	else
+	{
+		return ft_recursive_factorial(nb - 1) * nb;	
+	}
 }
 
 void	ft_putnbr(int nb)
@@ -59,6 +58,6 @@ int	main(void)
 {
 	int	output;
 
-	output = ft_iterative_factorial(7);
+	output = ft_recursive_factorial(7);
 	ft_putnbr(output);
 }
